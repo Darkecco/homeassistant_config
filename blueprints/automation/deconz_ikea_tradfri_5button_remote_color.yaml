@@ -193,5 +193,5 @@ action:
                       - '{{ state_attr(var_light, "hs_color")[1] }}'
                     transition: 1
                 - delay: 1
-  # Any other event will cancel the repeat loops.
-  default: []
+    # Any other event will cancel the repeat loops.
+    default: []
