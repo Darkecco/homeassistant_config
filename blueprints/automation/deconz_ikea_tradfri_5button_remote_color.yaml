@@ -179,7 +179,7 @@ action:
         sequence:
           - repeat:
               while: []
-              sequence:
+              sequence1:
                 - service: light.turn_on
                   target: !input "light"
                   data:
