@@ -179,19 +179,19 @@ action:
         sequence:
           - repeat:
               while: []
-                sequence:
-                  - service: light.turn_on
-                    target: !input "light"
-                    data:
-                      hs_color:
-                        - >-
-                          {% if state_attr(var_light, "hs_color")[0] + 18 > 360 %}
-                            {{ state_attr(var_light, "hs_color")[0] + 18 - 360 }}
-                          {% else %}
-                            {{ state_attr(var_light, "hs_color")[0] + 18 }}
-                          {% endif %}
-                        - '{{ state_attr(var_light, "hs_color")[1] }}'
-                      transition: 1
-                    - delay: 1
+              sequence:
+                - service: light.turn_on
+                  target: !input "light"
+                  data:
+                    hs_color:
+                      - >-
+                        {% if state_attr(var_light, "hs_color")[0] + 18 > 360 %}
+                          {{ state_attr(var_light, "hs_color")[0] + 18 - 360 }}
+                        {% else %}
+                          {{ state_attr(var_light, "hs_color")[0] + 18 }}
+                        {% endif %}
+                      - '{{ state_attr(var_light, "hs_color")[1] }}'
+                    transition: 1
+                  - delay: 1
   # Any other event will cancel the repeat loops.
   default: []
