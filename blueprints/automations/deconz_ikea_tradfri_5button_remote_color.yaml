@@ -70,13 +70,13 @@ action:
                   - service: light.toggle
                     target: !input "light"
                     data:
-                      transition: 1
+                      transition: 0.5
                       brightness_pct: !input "brightness"
             default:
               - service: light.toggle
                 target: !input "light"
                 data:
-                  transition: 1
+                  transition: 0.5
       - conditions:
           - "{{ event == 2002 }}"
         sequence:
@@ -84,7 +84,7 @@ action:
             target: !input "light"
             data:
               brightness_step_pct: 10
-              transition: 1
+              transition: 0.5
       - conditions:
           - "{{ event == 2001 }}"
         sequence:
@@ -95,8 +95,8 @@ action:
                   target: !input "light"
                   data:
                     brightness_step_pct: 10
-                    transition: 1
-                - delay: 1
+                    transition: 0.5
+                - delay: 0.5
       - conditions:
           - "{{ event == 3002 }}"
         sequence:
@@ -104,7 +104,7 @@ action:
             target: !input "light"
             data:
               brightness_step_pct: -10
-              transition: 1
+              transition: 0.5
       - conditions:
           - "{{ event == 3001 }}"
         sequence:
@@ -115,8 +115,8 @@ action:
                   target: !input "light"
                   data:
                     brightness_step_pct: -10
-                    transition: 1
-                - delay: 1
+                    transition: 0.5
+                - delay: 0.5
       
       # Left short
       - conditions:
@@ -133,7 +133,7 @@ action:
                   {% else %}
                     {{ state_attr(var_light, "hs_color")[1] - 20 }}
                   {% endif %}
-              transition: 1
+              transition: 0.5
 
       # Left long
       - conditions:
@@ -153,8 +153,8 @@ action:
                         {% else %}
                           {{ state_attr(var_light, "hs_color")[1] - 10 }}
                         {% endif %}
-                    transition: 1
-                - delay: 1
+                    transition: 0.5
+                - delay: 0.5
       
       # Right short
       - conditions:
@@ -171,7 +171,7 @@ action:
                     {{ state_attr(var_light, "hs_color")[0] + 18 }}
                   {% endif %}
                 - '{{ state_attr(var_light, "hs_color")[1] }}'
-              transition: 1
+              transition: 0.5
 
       #Right long
       - conditions:
@@ -191,7 +191,7 @@ action:
                           {{ state_attr(var_light, "hs_color")[0] + 18 }}
                         {% endif %}
                       - '{{ state_attr(var_light, "hs_color")[1] }}'
-                    transition: 1
-                - delay: 1
+                    transition: 0.5
+                - delay: 0.5
     # Any other event will cancel the repeat loops.
     default: []
