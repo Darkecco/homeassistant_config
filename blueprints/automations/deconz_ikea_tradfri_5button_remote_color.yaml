@@ -61,6 +61,8 @@ action:
   - variables:
       event: "{{ trigger.event.data.event }}"
   - choose:
+      
+      # Middle toggle button
       - conditions:
           - "{{ event == 1002 }}"
         sequence:
@@ -77,6 +79,8 @@ action:
                 target: !input "light"
                 data:
                   transition: 0.5
+      
+      # Up short
       - conditions:
           - "{{ event == 2002 }}"
         sequence:
@@ -85,6 +89,7 @@ action:
             data:
               brightness_step_pct: 10
               transition: 0.5
+      # Up long
       - conditions:
           - "{{ event == 2001 }}"
         sequence:
@@ -97,6 +102,8 @@ action:
                     brightness_step_pct: 10
                     transition: 0.5
                 - delay: 0.5
+      
+      # Down short
       - conditions:
           - "{{ event == 3002 }}"
         sequence:
@@ -105,6 +112,8 @@ action:
             data:
               brightness_step_pct: -10
               transition: 0.5
+      
+      # Down long
       - conditions:
           - "{{ event == 3001 }}"
         sequence:
