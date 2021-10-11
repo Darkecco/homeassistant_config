@@ -67,13 +67,24 @@ action:
           - "{{ event == 1002 }}"
         sequence:
           - choose:
-              - conditions: "{{ force_brightness }}"
+              - conditions: "{{is_state(var_light, "on")}}"
                 sequence:
-                  - service: light.toggle
+                  - service: light.turn_off
                     target: !input "light"
                     data:
-                      transition: 0.5
-                      brightness_pct: !input "brightness"
+                      transition: 5
+              
+              - conditions:
+                  - "{{is_state(var_light, "off")}}"
+                sequence:
+                  - choose:
+                    - conditions: "{{ force_brightness }}"
+                      sequence:
+                        - service: light.turn_on
+                          target: !input "light"
+                          data:
+                            transition: 0.5
+                            brightness_pct: !input "brightness"
             default:
               - service: light.toggle
                 target: !input "light"
