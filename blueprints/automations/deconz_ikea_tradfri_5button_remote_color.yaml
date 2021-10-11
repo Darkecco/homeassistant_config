@@ -67,16 +67,18 @@ action:
           - "{{ event == 1002 }}"
         sequence:
           - choose:
-              - conditions:
-                - "{{is_state(var_light.entity_id, \"on\")}}"
+              - conditions: state
+                entity_id: var_light.entity_id
+                state: "on"
                 sequence:
                   - service: light.turn_off
                     target: !input "light"
                     data:
                       transition: 5
               
-              - conditions:
-                  - "{{is_state(var_light.entity_id, \"off\")}}"
+              - conditions: state
+                entity_id: var_light.entity_id
+                state: "off"
                 sequence:
                   - choose:
                     - conditions: "{{ force_brightness }}"
