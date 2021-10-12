@@ -68,7 +68,7 @@ action:
         sequence:
           - choose:
               - conditions:
-                - "{{is_state(var_light.entity_id, \"on\")}}"
+                - "{{is_state(var_light, \"on\")}}"
                 sequence:
                   - service: light.turn_off
                     target: !input "light"
@@ -76,7 +76,7 @@ action:
                       transition: 5
               
               - conditions:
-                  - "{{is_state(var_light.entity_id, \"off\")}}"
+                  - "{{is_state(var_light, \"off\")}}"
                 sequence:
                   - choose:
                     - conditions: "{{ force_brightness }}"
